@@ -1,5 +1,5 @@
-#ifndef CLIENTS_H
-#define CLIENTS_H
+#ifndef TAXI_CLIENT_H
+#define TAXI_CLIENT_H
 
 #include <stdlib.h>
 #include <string.h>

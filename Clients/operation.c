@@ -1,48 +1,104 @@
-#include "taxi_client.h"
+#include "taxi.h"
 
-int is_empty(struct clients *front, struct clients *rear)
+
+int is_empty(clientes_estacion **estacion_cliente, list_t **rear)
 {
-	if (front == NULL  && rear == NULL)
+
+	if ((*estacion_cliente)->lista_cliente == NULL  && *rear == NULL)
 	{
-		return (0);
+		return (0);/*vacio*/
 	}
-	return (1);
+	return (1);/* tiene algo*/
 }
 
-void pop(struct clients *front, struct clients *rear)
+int number_clients(clientes_estacion **estacion_cliente)
+{
+	return (*estacion_cliente)->n;/* retorna numeros de clientes*/
+}
+
+void pop(clientes_estacion **estacion_cliente, list_t **rear)
 {
 
-	struct clients *temp= front;
 
-	if (front == NULL)
+	list_t *temp = (*estacion_cliente)->lista_cliente;
+
+	if ((*estacion_cliente)->lista_cliente == NULL)
 	{
+
 		return;
 	}
-	if (front == rear)
+	if ((*estacion_cliente)->lista_cliente == *rear)
 	{
-		front = rear = NULL;
+
+		(*estacion_cliente)->lista_cliente = *rear = NULL;
+
 	}
 	else
 	{
-		front = front->next;
+
+		(*estacion_cliente)->lista_cliente = (*estacion_cliente)->lista_cliente->next;
 	}
+
+
+	(*estacion_cliente)->n -=1;
+
+
 	free(temp);
 
 
 }
 
 
+void print_clients(clientes_estacion *estacion_cliente)
+{
+	list_t *temp;
 
-void push(struct clients *front, struct clients *rear ,const char *name, unsigned int cellphone, const char *destiny,
+	if (estacion_cliente == NULL)
+	{
+		return;
+	}
+
+	temp = estacion_cliente->lista_cliente;
+
+	if (temp == NULL)
+	{
+		return;
+	}
+
+
+	while (temp != NULL)
+	{
+
+		printf("name: %s\n", temp->name);
+
+		printf("cellphone: %d\n", temp->Celphone);
+
+		printf("destiny: %s\n", temp->destiny);
+
+		printf("Number_taxis: %d\n", temp->Number_taxis);
+
+		printf("trunk: %d\n", temp->trunk);
+
+		printf("\n");
+
+		temp = temp->next;
+
+	}
+
+
+
+}
+void push(clientes_estacion **estacion_cliente, list_t **rear ,const char *name, unsigned int cellphone, const char *destiny,
 		unsigned int number_taxis, unsigned int trunk_or_not)
 {
-	struct clients *taxi;
+	list_t *taxi;
 
-	taxi = malloc (sizeof(struct clients));
+	taxi = malloc (sizeof(list_t));
 
 	if (taxi == NULL)
 	{
 		return;
+
 	}
 	taxi->name = strdup(name);
 	taxi->Celphone = cellphone;
@@ -51,14 +107,16 @@ void push(struct clients *front, struct clients *rear ,const char *name, unsigne
 	taxi->trunk = trunk_or_not;
 	taxi->next = NULL;
 
-	if (front == NULL && rear == NULL)
+	if ((*estacion_cliente)->lista_cliente == NULL && *rear == NULL)
 	{
-		front = rear = taxi;
+		(*estacion_cliente)->lista_cliente = *rear = taxi;
+		(*estacion_cliente)->n += 1;
 		return;
 	}
 
-	rear->next = taxi;
-	rear = taxi;
+	(*rear)->next = taxi;
+	*rear = taxi;
+	(*estacion_cliente)->n += 1;
 
 }
 

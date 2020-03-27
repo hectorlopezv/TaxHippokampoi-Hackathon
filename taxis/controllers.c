@@ -38,7 +38,20 @@ taxi *create_taxi(char *driver, char *number, char *brand, char *model,
     new->cuit = cuit;
     new->trunk = trunk;
     new->year = year;
+    new->next = NULL;
 
     return (new);
+}
+
+taxi *add_taxi(taxi **list, taxi *new)
+{
+ if (new == NULL)
+     return (NULL);
+
+ for (; *list != NULL; list = &(*list)->next);
+
+ *list = new;
+
+ return (new);
 }
 

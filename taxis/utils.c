@@ -30,6 +30,9 @@ void *free_taxi(taxi *_taxi)
     if (_taxi->status != NULL)
         free(_taxi->status);
 
+    if (_taxi->next != NULL)
+        free(_taxi->next);
+
     free(_taxi);
     return (NULL);
 }

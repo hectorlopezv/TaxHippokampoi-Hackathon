@@ -21,8 +21,8 @@ typedef struct _taxi {
 taxi *create_taxi(char *driver, char *number, char *brand, char *model,
 		char *status, short trunk, unsigned short cuit, unsigned short year);
 taxi *add_taxi(taxi **list, taxi *new);
-taxi *delete_taxi(taxi **list, unsigned int index);
-int numbers_taxi(taxi *list);
+char *delete_taxi(taxi **list, unsigned int index);
+int get_numbers_taxi(taxi *list);
 
 
 /* utils */

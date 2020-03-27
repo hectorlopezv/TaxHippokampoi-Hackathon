@@ -45,13 +45,21 @@ taxi *create_taxi(char *driver, char *number, char *brand, char *model,
 
 taxi *add_taxi(taxi **list, taxi *new)
 {
- if (new == NULL)
+    if (new == NULL)
      return (NULL);
 
- for (; *list != NULL; list = &(*list)->next);
+    for (; *list != NULL; list = &(*list)->next);
 
- *list = new;
+    *list = new;
 
- return (new);
+    return (new);
 }
 
+int get_numbers_taxi(taxi *list)
+{
+    int i;
+
+    for (i = 0; list != NULL; i++, list = list->next);
+
+    return (i);
+}

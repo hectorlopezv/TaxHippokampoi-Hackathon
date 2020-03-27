@@ -14,11 +14,13 @@ typedef struct _taxi {
 	short trunk;
 	unsigned short cuit;
 	unsigned short year;
+
+	struct _taxi *next;
 } taxi;
 
 taxi *create_taxi(char *driver, char *number, char *brand, char *model,
 		char *status, short trunk, unsigned short cuit, unsigned short year);
-taxi *add_taxi(taxi **list);
+taxi *add_taxi(taxi **list, taxi *new);
 taxi *delete_taxi(taxi **list, unsigned int index);
 int numbers_taxi(taxi *list);
 

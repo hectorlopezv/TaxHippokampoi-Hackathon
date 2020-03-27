@@ -24,7 +24,6 @@ taxi *add_taxi(taxi **list, taxi *new);
 char *delete_taxi(taxi **list, unsigned int index);
 int get_numbers_taxi(taxi *list);
 
-
 /* utils */
 char *allocate_string(char *str, char *dest);
 void *free_taxi(taxi *_taxi);

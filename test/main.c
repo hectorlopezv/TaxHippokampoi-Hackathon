@@ -3,6 +3,7 @@
 int main()
 {
     taxi *taxis;
+    taxis = NULL;
     new_taxi(&taxis, "hello", "12", "123", "123", "123", 1, 0, 0);
-    printf("%p model\n", taxis);
+    printf("%s model\n", taxis->model);
 }

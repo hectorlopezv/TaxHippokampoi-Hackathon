@@ -30,11 +30,11 @@ taxi *create_taxi(char *driver, char *number, char *brand, char *model,
     if (new->status == NULL)
         return (free_taxi(new));
 
-    new->driver = strcpy(driver, new->driver);
-    new->status = strcpy(status, new->status);
-    new->number = strcpy(number, new->number);
-    new->brand = strcpy(brand, new->brand);
-    new->model = strcpy(model, new->model);
+    new->driver = strdup(driver);
+    new->status = strdup(status);
+    new->number = strdup(number);
+    new->brand = strdup(brand);
+    new->model = strdup(model);
     new->cuit = cuit;
     new->trunk = trunk;
     new->year = year;
@@ -47,6 +47,10 @@ taxi *add_taxi(taxi **list, taxi *new)
 {
     if (new == NULL)
      return (NULL);
+
+    if (!*list) {
+        *list = new;
+    }
 
     for (; *list != NULL; list = &(*list)->next);
 

@@ -7,12 +7,20 @@ include_directories(.)
 include_directories(taxis)
 include_directories(Clients)
 
+set(CLIENTS 
+						clients/clients.h
+						clients/controllers.c
+						)
+
+set(TAXIS
+						taxis/taxis.h
+						taxis/controllers.c
+						taxis/utils.c
+						)
+
 add_executable(TaxHippokampoi_Hackathon
-        taxis/taxis.h
-        taxis/controllers.c
-        clients/clients.h
-        taxis/utils.c
-        clients/controllers.c
+				${CLIENTS}
+				${TAXIS}
         taxi-handler.h
         taxi-handler.c
         test/main.c

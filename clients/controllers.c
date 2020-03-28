@@ -1,4 +1,4 @@
-#include "taxi.h"
+#include "clients.h"
 
 
 int is_empty(clientes_estacion **estacion_cliente, list_t **rear)
@@ -18,34 +18,28 @@ int number_clients(clientes_estacion **estacion_cliente)
 
 void pop(clientes_estacion **estacion_cliente, list_t **rear)
 {
+	list_t *temp;
 
-
-	list_t *temp = (*estacion_cliente)->lista_cliente;
+	temp = (*estacion_cliente)->lista_cliente;
 
 	if ((*estacion_cliente)->lista_cliente == NULL)
 	{
-
 		return;
 	}
+
 	if ((*estacion_cliente)->lista_cliente == *rear)
 	{
-
 		(*estacion_cliente)->lista_cliente = *rear = NULL;
-
 	}
 	else
 	{
-
 		(*estacion_cliente)->lista_cliente = (*estacion_cliente)->lista_cliente->next;
 	}
 
 
 	(*estacion_cliente)->n -=1;
 
-
 	free(temp);
-
-
 }
 
 
@@ -71,11 +65,11 @@ void print_clients(clientes_estacion *estacion_cliente)
 
 		printf("name: %s\n", temp->name);
 
-		printf("cellphone: %d\n", temp->Celphone);
+		printf("cellphone: %d\n", temp->cellphone);
 
 		printf("destiny: %s\n", temp->destiny);
 
-		printf("Number_taxis: %d\n", temp->Number_taxis);
+		printf("Number_taxis: %d\n", temp->number_taxis);
 
 		printf("trunk: %d\n", temp->trunk);
 
@@ -101,9 +95,9 @@ void push(clientes_estacion **estacion_cliente, list_t **rear ,const char *name,
 
 	}
 	taxi->name = strdup(name);
-	taxi->Celphone = cellphone;
+	taxi->cellphone = cellphone;
 	taxi->destiny = strdup(destiny);
-	taxi->Number_taxis = number_taxis;
+	taxi->number_taxis = number_taxis;
 	taxi->trunk = trunk_or_not;
 	taxi->next = NULL;
 

@@ -1,5 +1,5 @@
-#ifndef TAXI_H
-#define TAXI_H
+#ifndef CLIENTS_H
+#define CLIENTS_H
 
 #include <stdlib.h>
 #include <string.h>
@@ -8,9 +8,9 @@
 typedef struct list_s
 {
 	char *name;
-	unsigned int Celphone;
+	unsigned int cellphone;
 	char *destiny;
-	unsigned int Number_taxis;
+	unsigned int number_taxis;
 	unsigned int trunk;
 	struct list_s *next;
 } list_t;
